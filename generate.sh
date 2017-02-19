@@ -21,7 +21,7 @@ codename="xenial"
 
 command -v docker || curl https://get.docker.com/ | sh
 
-# Create source file : source.list
+# Create source file : fastestmirror.list
 ###################################
 
 cat <<EOF > fastestmirror.list
@@ -31,7 +31,7 @@ deb mirror://mirrors.ubuntu.com/mirrors.txt $codename-backports main restricted 
 deb mirror://mirrors.ubuntu.com/mirrors.txt $codename-security main restricted universe
 EOF
 
-# Create source file : mirror.list
+# Create source file : mirror.list-[version]
 ###################################
 
 cat <<EOF > mirror.list-$version
@@ -40,26 +40,28 @@ set run_postmirror 0
 set nthreads       20
 set _tilde         0
 
-deb http://ubuntu-archive.mirrors.d3soft.biz/ubuntu/ $codename
-deb http://ubuntu-archive.mirrors.d3soft.biz/ubuntu/ $codename-updates
-deb http://ubuntu-archive.mirrors.d3soft.biz/ubuntu/ $codename-backports
-deb http://ubuntu-archive.mirrors.d3soft.biz/ubuntu/ $codename-security
 
-clean http://ubuntu-archive.mirrors.d3soft.biz/ubuntu
+#deb http://ubuntu-archive.mirrors.d3soft.biz/ubuntu/ $codename
+deb http://archive.ubuntu.com/ubuntu/ $codename-updates
+deb http://archive.ubuntu.com/ubuntu/ $codename-updates
+deb http://archive.ubuntu.com/ubuntu/ $codename-backports
+deb http://archive.ubuntu.com/ubuntu/ $codename-security
+
+clean http://archive.ubuntu.com/ubuntu/
 EOF
 
 # Create source file : nginx config
 ###################################
 
 cat <<EOF > nginx.site-available.mirror-local
-server{
-     listen 80;
-     server_name mirror.local;
+server {
+	listen 80;
+	server_name mirror.local;
 
-     location / {
-         root $wwwpath;
-         autoindex on;
-     }
+	location / {
+		root $wwwpath;
+		autoindex on;
+	}
 }
 EOF
 
