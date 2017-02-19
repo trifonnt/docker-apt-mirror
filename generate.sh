@@ -18,13 +18,11 @@ codename="xenial"
 
 # Install Docker
 ###################################
-
 command -v docker || curl https://get.docker.com/ | sh
 
 # Create source file : fastestmirror.list
 ###################################
-
-cat <<EOF > fastestmirror.list
+cat <<EOF > fastest-mirror.list
 deb mirror://mirrors.ubuntu.com/mirrors.txt $codename main restricted universe
 deb mirror://mirrors.ubuntu.com/mirrors.txt $codename-updates main restricted universe
 deb mirror://mirrors.ubuntu.com/mirrors.txt $codename-backports main restricted universe
@@ -33,7 +31,6 @@ EOF
 
 # Create source file : mirror.list-[version]
 ###################################
-
 cat <<EOF > mirror.list-$version
 set base_path      /mirrors
 set run_postmirror 0
@@ -52,7 +49,6 @@ EOF
 
 # Create source file : nginx config
 ###################################
-
 cat <<EOF > nginx.site-available.mirror-local
 server {
 	listen 80;
@@ -67,7 +63,6 @@ EOF
 
 # Create source file : Dockerfile
 ##################################
-
 cat <<EOF > Dockerfile
 FROM ubuntu:$version
 
@@ -75,7 +70,7 @@ MAINTAINER Trifon Trifonov <trifont@gmail.com>
 
 # Some mirrors don't have the required packages for mirror
 # So we keep the default one
-#ADD fastestmirror.list /etc/apt/sources.list
+#ADD fastest-mirror.list /etc/apt/sources.list
 ADD mirror.list-$codename-main /etc/apt/mirror.list
 ADD nginx.site-available.mirror-local /etc/nginx/sites-available/mirror.local
 
