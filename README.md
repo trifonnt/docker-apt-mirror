@@ -2,11 +2,11 @@
 
 ## Description
 
-This is the [official source](https://github.com/trifonnt/docker-apt-mirror/tree/master/apt-mirror)
-of the [trifonnt/apt-mirror](https://registry.hub.docker.com/u/trifonnt/apt-mirror/)
+This is the [official source](https://github.com/trifonnt/docker-apt-mirror/tree/master)
+of the [trifonnt/apt-mirror](https://registry.hub.docker.com/u/trifonnt/apt-mirror-1604/)
 docker image.
 
-Its purpose is to get a local mirror of all your required packages so you can work efficiently without any Internet connection.
+It's purpose is to get a local mirror of all your required packages so you can work efficiently without any Internet connection.
 All it requires is enough disk space which doesn't cost anything anymore...
 
 ## Details
