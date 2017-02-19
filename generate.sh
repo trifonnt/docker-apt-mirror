@@ -20,7 +20,7 @@ codename="xenial"
 ###################################
 command -v docker || curl https://get.docker.com/ | sh
 
-# Create source file : fastestmirror.list
+# Create source file : fastest-mirror.list
 ###################################
 cat <<EOF > fastest-mirror.list
 deb mirror://mirrors.ubuntu.com/mirrors.txt $codename main restricted universe
@@ -36,7 +36,6 @@ set base_path      /mirrors
 set run_postmirror 0
 set nthreads       20
 set _tilde         0
-
 
 #deb http://ubuntu-archive.mirrors.d3soft.biz/ubuntu/ $codename
 deb http://archive.ubuntu.com/ubuntu/ $codename-updates
@@ -92,12 +91,11 @@ EOF
 
 # Build images : loop from 'main' to $maxstage
 ###############################################
-
 src_namespace=""
 src_imagename="ubuntu:"
 src_imagetag="$version"
 dst_namespace="trifonnt/"
-dst_imagename="apt-mirror:"
+dst_imagename="apt-mirror-1604:"
 for dst_imagetag in main restricted universe multiverse
 do
  set -x
@@ -143,7 +141,6 @@ done
 
 # Helper : script to start latest generated images
 ###################################################
-
 cat <<EOF > start-local-ubuntu-mirror.sh
 docker run -d --name ubuntu-mirror $dst && \
 echo "${green}SUCCESS: Container started${reset}" || \
