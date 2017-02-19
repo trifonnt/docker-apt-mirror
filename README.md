@@ -3,7 +3,7 @@
 ## Description
 
 This is the [official source](https://github.com/trifonnt/docker-apt-mirror/tree/master)
-of the [trifonnt/apt-mirror](https://registry.hub.docker.com/u/trifonnt/apt-mirror-1604/)
+of the [trifonnt/apt-mirror-1604](https://registry.hub.docker.com/u/trifonnt/apt-mirror-1604/)
 docker image.
 
 It's purpose is to get a local mirror of all your required packages so you can work efficiently without any Internet connection.
@@ -83,3 +83,8 @@ docker run -p 80:80 -d --name ubuntu-mirror trifonnt/apt-mirror-1604:restricted
 ```
 
 You then must configure your xenial-based client's source.list so he speaks with your local mirror.
+
+
+## Links
+ - [Create a Local Ubuntu Repository using Apt-Mirror and Apt-Cacher](https://www.packtpub.com/books/content/create-local-ubuntu-repository-using-apt-mirror-and-apt-cacher)
+ 
