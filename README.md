@@ -1,5 +1,4 @@
 # docker-apt-mirror
-# ekino/apt-mirror
 
 ## Description
 
